@@ -1,17 +1,14 @@
 package entity;
 
 public class Hero {
-    public static int autoid;
-    private int id;
     private String name;
     private String position;
 
+
     public Hero() {
-        this.id = ++autoid;
     }
 
     public Hero(String name, String position) {
-        this.id = ++autoid;
         this.name = name;
         this.position = position;
     }
@@ -20,9 +17,6 @@ public class Hero {
         return this.name;
     }
 
-    public int getId() {
-        return this.id;
-    }
     public void setName(String name) {
         this.name = name;
     }
@@ -48,8 +42,8 @@ public class Hero {
     @Override
     public String toString() {
         return "{" +
-                " name='" + getName() + "'" +
-                ", position='" + getPosition() + "'" +
+                " " + getName() + "'" +
+                ", position: '" + getPosition() + "'" +
                 "}";
     }
 
