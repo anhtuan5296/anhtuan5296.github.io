@@ -26,13 +26,11 @@ public int singleNumber(int[] nums) {
             map.put(i, map.get(i) + 1);
         }
     }
-
     for (int i : nums) {
         if (map.get(i) == 1) {
             return i;
         }
     }
-
     return 0;
 }
 
@@ -42,7 +40,6 @@ public int singleNumber(int[] nums) {
 // https://leetcode.com/problems/majority-element/submissions/958044347/
 public int majorityElement(int[] nums) {
     int m = nums.length/2;
-
     for (int i : nums) {
         int count = 0;
         for (int j : nums) {
@@ -50,11 +47,8 @@ public int majorityElement(int[] nums) {
                 count += 1;
             }
         }
-
         if (count > m)
             return i;
-
-
     }
 
     return 0;
@@ -69,7 +63,6 @@ public int[] runningSum(int[] nums) {
 
     for(int i=1;i<nums.length;i++){
         nums[i]=nums[i-1]+nums[i];
-
     }
     return nums;
 }
