@@ -1,0 +1,119 @@
+CREATE DATABASE quanlythuctap;
+USE quanlythuctap;
+CREATE TABLE tbl_khoa (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  maKhoa VARCHAR (10) NOT NULL,
+  tenKhoa VARCHAR(50) NOT NULL,
+  sdt VARCHAR(20) NOT NULL
+);
+CREATE TABLE tbl_giangvien (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  tenGV VARCHAR(50) NOT NULL,
+  luong FLOAT NOT NULL,
+  maKhoa VARCHAR(10) NOT NULL
+);
+CREATE TABLE tbl_sinhvien (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  hoTen VARCHAR(50) NOT NULL,
+  maKhoa VARCHAR(10) NOT NULL,
+  namSinh DATE ,
+  queQuan VARCHAR(255)
+);
+CREATE TABLE tbl_detai (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  maDT VARCHAR(10) NOT NULL,
+  tenDT VARCHAR(50) NOT NULL,
+  kinhPhi FLOAT NOT NULL,
+  noiThucTap VARCHAR(50) NOT NULL
+);
+CREATE TABLE tbl_huongdan (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  maDT VARCHAR(10) NOT NULL,
+  maSV INT NOT NULL,
+  ketQua VARCHAR(50) 		
+);
+INSERT INTO TBLKhoa VALUES
+ (‘Geo’,‘Dialy va QLTN’,3855413), 
+(‘Math’,‘Toan’,3855411),
+ (‘Sci’,‘KhoaHoc’,3855412);
+INSERT INTO TBLGiangVien VALUES 
+(11,‘Hoai Lam’,300,‘Geo’), 
+(12,‘Bui Anh Tuan’,300,‘Math’), 
+(13,‘Trong Tan’,300,‘Geo’), 
+(14,‘Anh Tho’,300,‘Sci’), 
+(15,‘Tan Nhan’,300,‘Math’);
+INSERT INTO TBLSinhVien VALUES 
+(1,‘Ho Ngoc Ha’,‘Sci’,1995,‘Ha Noi’), 
+(2,‘Nguyen Cong Danh’,‘Geo’,1994,‘Nam Dinh’), 
+(3,‘Bui Trung Hieu’,‘Math’,1993,‘Ha Tinh’), 
+(4,‘Nguyen Van Thanh’,‘Sci’,1990,‘Ha Nam’), 
+(5,‘Le Gia Bao’,‘Sci’,1999,‘Thanh Hoa’), 
+(6,‘Le Cat Trong Ly’,‘Geo’,1992,‘Nghe An’), 
+(7,‘Le Van Son’,‘Math’,1998,‘Hai Phong’),
+(8,‘Nguyen Huy Can’,‘Sci’,1993,‘Ha Noi’);
+INSERT INTO TBLDeTai VALUES 
+(‘Dt01’,‘NghienCuu’,500,‘Ha Tinh’), 
+(‘Dt02’,‘NghienCuu’,500,‘Nghe An’), 
+(‘Dt03’,‘NghienCuu’,500, ‘Hai Phong’), 
+(‘Dt04’,‘NghienCuu’,500,‘Ha Noi’ );
+INSERT INTO TBLHuongDan VALUES 
+(1,‘Dt01’,2,7), 
+(2,‘Dt03’,5,6), 
+(3,‘Dt03’,7,8), 
+(5,‘Dt04’,1,9), 
+(6,‘Dt01’,3,null), 
+(7,‘Dt04’,4,8), 
+(8,‘Dt03’,6,8);
+
+1.Đưa ra thông tin gồm mã số, họ tên và tên khoa của tất cả các giảng viên .
+SELECT tbl_giangvien.maGV,tbl_giangvien.tenGV,tbl_khoa.tenKhoa FROM tbl_giangvien 
+JOIN tbl_khoa ON tbl_giangvien.maKhoa = tbl_khoa.maKhoa;
+
+
+2.Sử dụng lệnh xuất ra mã số, họ tên, tên khoa của các giảng viên hướng dẫn từ 3 sinh viên trở lên.
+SELECT tbl_giangvien.maGV,tbl_giangvien.tenGV,tbl_khoa.tenKhoa FROM tbl_giangvien  
+INNER JOIN khoa ON tbl_giangvien.maKhoa = tbl_khoa.maKhoa
+WHERE tbl_giangvien.maGV IN (SELECT maGV FROM tbl_huongdan WHERE COUNT(maSV) >= 3);
+
+
+3.Sử dụng lệnh SQL để xuất ra thông tin về những sinh viên chưa có điểm thực tập.
+SELECT tbl_sinhvien.id, tbl_sinhvien.hoTen, tbl_khoa.tenKhoa
+FROM tbl_sinhvien
+INNER JOIN tbl_khoa ON tbl_sinhvien.maKhoa =tbl_khoa.maKhoa
+LEFT JOIN tbl_huongdan ON tbl_sinhvien.id = tbl_huongdan.maSV
+WHERE tbl_huongdan.maSV IS NULL;
+
+
+4.Thực hiện lệnh SQL xuất ra số điện thoại của khoa mà sinh viên có tên ‘Le van son’ đang theo học
+SELECT tbl_khoa.sdt FROM tbl_khoa 
+INNER JOIN tbl_khoa ON khoa.maKhoa = tbl_sinhvien.maKhoa WHERE tbl_sinhvien.hoTen = 'Le van son';
+
+
+5.Sử dụng lệnh truy vấn SQL lấy ra mã số và tên các đề tài có nhiều hơn 2 sinh viên tham gia thực tập.
+SELECT tbl_detai.maDT, tbl_detai.tenDT FROM tbl_detai 
+INNER JOIN tbl_huongdan ON tbl_detai.maDT = tbl_huongdan.maDT HAVING COUNT(DISTINCT tbl_huongdan.maSV) > 2;
+
+
+6.Sử dụng câu lệnh truy vấn SQL lấy ra mã số, tên đề tài của đề tài có kinh phí cao nhất
+SELECT maDT, tenDT FROM tbl_detai WHERE kinhPhi = (SELECT MAX(kinhPhi) FROM tbl_detai);
+
+
+7.Sử dụng câu lệnh SQL xuất ra Tên khoa, Số lượng sinh viên của mỗi khoa.
+SELECT tbl_khoa.tenKhoa, COUNT(tbl_sinhvien.id) AS SoLuong FROM tbl_khoa
+LEFT JOIN tbl_sinhvien ON tbl_khoa.maKhoa = tbl_sinhvien.maKhoa
+GROUP BY tbl_khoa.tenKhoa;
+
+
+
+8.Sử dụng truy vấn SQL xuất ra mã số, họ tên và điểm của các sinh viên khoa ‘DIALY và QLTN’.
+SELECT tbl_sinhvien.id, tbl_sinhvien.hoTen, tbl_huongdan.ketQua
+FROM tbl_sinhvien
+INNER JOIN tbl_khoa ON tbl_sinhvien.maKhoa = tbl_khoa.maKhoa
+LEFT JOIN tbl_huongdan ON tbl_sinhvien.id = tbl_huongdan.maSV
+WHERE tbl_khoa.tenKhoa IN ('Dialy va QLTN');
+
+
+9.Sử dụng câu lệnh SQL xuất ra danh sách gồm Mã số, Họ tên và Tuổi của các sinh viên khoa ‘TOAN’.
+SELECT maSV, hoTen, YEAR(CURRENT_DATE) - YEAR(namSinh) AS tuoi FROM tbl_sinhvien
+INNER JOIN tbl_khoa ON tbl_sinhvien.maKhoa = tbl_khoa.maKhoa
+WHERE tbl_khoa.tenKhoa = 'TOAN';
