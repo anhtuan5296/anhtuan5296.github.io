@@ -37,18 +37,18 @@ INSERT INTO TBLKhoa VALUES
 (‘Math’,‘Toan’,0924568129),
  (‘Sci’,‘KhoaHoc’,0907456132);
 INSERT INTO TBLGiangVien VALUES 
-(11,‘Hoai Lam’,300,‘Geo’), 
-(12,‘Bui Anh Tuan’,300,‘Math’), 
-(13,‘Trong Tan’,300,‘Geo’), 
-(14,‘Anh Tho’,300,‘Sci’), 
-(15,‘Tan Nhan’,300,‘Math’);
+(11,‘Nguyen Van Nam’,300,‘Geo’), 
+(12,‘Nguyen Xuan Anh’,300,‘Math’), 
+(13,‘Bui Van An’,300,‘Geo’), 
+(14,‘Phan Manh Hung’,300,‘Sci’), 
+(15,‘Hoang Van Thu’,300,‘Math’);
 INSERT INTO TBLSinhVien VALUES 
 (1,‘Ho Ngoc Ha’,‘Sci’,1995,‘Ha Noi’), 
 (2,‘Nguyen Cong Danh’,‘Geo’,1994,‘Nam Dinh’), 
 (3,‘Bui Trung Hieu’,‘Math’,1993,‘Ha Tinh’), 
 (4,‘Nguyen Van Thanh’,‘Sci’,1990,‘Ha Nam’), 
 (5,‘Le Gia Bao’,‘Sci’,1999,‘Thanh Hoa’), 
-(6,‘Le Cat Trong Ly’,‘Geo’,1992,‘Nghe An’), 
+(6,‘Le Trong Ly’,‘Geo’,1992,‘Nghe An’), 
 (7,‘Le Van Son’,‘Math’,1998,‘Hai Phong’),
 (8,‘Nguyen Huy Can’,‘Sci’,1993,‘Ha Noi’);
 INSERT INTO TBLDeTai VALUES 
@@ -71,17 +71,16 @@ JOIN tbl_khoa ON tbl_giangvien.maKhoa = tbl_khoa.maKhoa;
 
 
 2.Sử dụng lệnh xuất ra mã số, họ tên, tên khoa của các giảng viên hướng dẫn từ 3 sinh viên trở lên.
-SELECT tbl_giangvien.maGV,tbl_giangvien.tenGV,tbl_khoa.tenKhoa FROM tbl_giangvien  
-INNER JOIN khoa ON tbl_giangvien.maKhoa = tbl_khoa.maKhoa
-WHERE tbl_giangvien.maGV IN (SELECT maGV FROM tbl_huongdan WHERE COUNT(maSV) >= 3);
+SELECT tbl_giangvien.id, tbl_giangvien.tenGV, tbl_khoa.tenKhoa FROM tbl_giangvien 
+JOIN tbl_khoa ON tbl_giangvien.maKhoa = tbl_khoa.maKhoa 
+JOIN tbl_huongdan ON tbl_giangvien.id = tbl_huongdan.maSV
+GROUP BY tbl_giangvien.id
+HAVING COUNT(tbl_huongdan.maDT) >= 3;
 
 
 3.Sử dụng lệnh SQL để xuất ra thông tin về những sinh viên chưa có điểm thực tập.
-SELECT tbl_sinhvien.id, tbl_sinhvien.hoTen, tbl_khoa.tenKhoa
-FROM tbl_sinhvien
-INNER JOIN tbl_khoa ON tbl_sinhvien.maKhoa =tbl_khoa.maKhoa
-LEFT JOIN tbl_huongdan ON tbl_sinhvien.id = tbl_huongdan.maSV
-WHERE tbl_huongdan.maSV IS NULL;
+SELECT tbl_sinhvien.id, tbl_sinhvien.hoTen, tbl_khoa.tenKhoa FROM tbl_sinhvien
+LEFT JOIN tbl_huongdan ON tbl_sinhvien.id = tbl_huongdan.maSV WHERE tbl_huongdan.ketQua IS NULL;
 
 
 4.Thực hiện lệnh SQL xuất ra số điện thoại của khoa mà sinh viên có tên ‘Le van son’ đang theo học
@@ -109,7 +108,7 @@ GROUP BY tbl_khoa.tenKhoa;
 SELECT tbl_sinhvien.id, tbl_sinhvien.hoTen, tbl_huongdan.ketQua FROM tbl_sinhvien
 INNER JOIN tbl_khoa ON tbl_sinhvien.maKhoa = tbl_khoa.maKhoa
 LEFT JOIN tbl_huongdan ON tbl_sinhvien.id = tbl_huongdan.maSV
-WHERE tbl_khoa.tenKhoa IN ('Dialy va QLTN');
+WHERE tbl_khoa.tenKhoa = 'Dialy va QLTN';
 
 
 9.Sử dụng câu lệnh SQL xuất ra danh sách gồm Mã số, Họ tên và Tuổi của các sinh viên khoa ‘TOAN’.
