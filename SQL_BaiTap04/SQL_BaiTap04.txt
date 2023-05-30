@@ -79,8 +79,11 @@ HAVING COUNT(tbl_huongdan.maDT) >= 3;
 
 
 3.Sử dụng lệnh SQL để xuất ra thông tin về những sinh viên chưa có điểm thực tập.
-SELECT tbl_sinhvien.id, tbl_sinhvien.hoTen, tbl_khoa.tenKhoa FROM tbl_sinhvien
-LEFT JOIN tbl_huongdan ON tbl_sinhvien.id = tbl_huongdan.maSV WHERE tbl_huongdan.ketQua IS NULL;
+SELECT tbl_sinhvien.id, tbl_sinhvien.hoTen, tbl_khoa.tenKhoa
+FROM tbl_sinhvien
+INNER JOIN tbl_khoa ON tbl_sinhvien.maKhoa =tbl_khoa.maKhoa
+LEFT JOIN tbl_huongdan ON tbl_sinhvien.id = tbl_huongdan.maSV
+WHERE tbl_huongdan.maSV IS NULL;
 
 
 4.Thực hiện lệnh SQL xuất ra số điện thoại của khoa mà sinh viên có tên ‘Le van son’ đang theo học
