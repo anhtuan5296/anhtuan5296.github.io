@@ -106,8 +106,7 @@ GROUP BY tbl_khoa.tenKhoa;
 
 
 8.Sử dụng truy vấn SQL xuất ra mã số, họ tên và điểm của các sinh viên khoa ‘DIALY và QLTN’.
-SELECT tbl_sinhvien.id, tbl_sinhvien.hoTen, tbl_huongdan.ketQua
-FROM tbl_sinhvien
+SELECT tbl_sinhvien.id, tbl_sinhvien.hoTen, tbl_huongdan.ketQua FROM tbl_sinhvien
 INNER JOIN tbl_khoa ON tbl_sinhvien.maKhoa = tbl_khoa.maKhoa
 LEFT JOIN tbl_huongdan ON tbl_sinhvien.id = tbl_huongdan.maSV
 WHERE tbl_khoa.tenKhoa IN ('Dialy va QLTN');
