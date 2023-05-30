@@ -33,9 +33,9 @@ CREATE TABLE tbl_huongdan (
   ketQua VARCHAR(50) 		
 );
 INSERT INTO TBLKhoa VALUES
- (‘Geo’,‘Dialy va QLTN’,3855413), 
-(‘Math’,‘Toan’,3855411),
- (‘Sci’,‘KhoaHoc’,3855412);
+ (‘Geo’,‘Dialy va QLTN’,0965784932), 
+(‘Math’,‘Toan’,0924568129),
+ (‘Sci’,‘KhoaHoc’,0907456132);
 INSERT INTO TBLGiangVien VALUES 
 (11,‘Hoai Lam’,300,‘Geo’), 
 (12,‘Bui Anh Tuan’,300,‘Math’), 
