@@ -3,18 +3,18 @@ USE quanlyshop;
 CREATE TABLE tbl_nguoidung (
   id int PRIMARY KEY AUTO_INCREMENT,
   ten varchar(100),
-  sdt varchar(12),
+  sdt varchar(20),
   diachi varchar(255),
   username varchar(100),
   password varchar(50),
   email varchar(100),
   ngayVaoLam timestamp,
   vaitro_id integer,
-  cccd varchar(20),
+  cccd varchar(50),
   trangThai integer,
-  created_at date NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  updated_at date NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  deleted_at date NOT NULL DEFAULT CURRENT_TIMESTAMP
+  created_at date ,
+  updated_at date ,
+  deleted_at date 
 );
 CREATE Table tbl_vaitro (
   id integer PRIMARY KEY AUTO_INCREMENT,
@@ -41,7 +41,7 @@ CREATE Table tbl_luong (
 CREATE Table tbl_doanhso (
   id integer PRIMARY KEY AUTO_INCREMENT,
   nhanvien_id integer,
-  soHoaDon integer, /*countable*/
+  soHoaDon integer, 
   heSo float,
   thang integer,
   trangThai varchar(50),
@@ -56,9 +56,9 @@ CREATE Table tbl_sanpham (
   gia float,
   danhmuc_id integer,
   nhacungcap_id integer,
-  ngaySanXuat date NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  ngaySanXuat date ,
   moTa varchar(255),
-  trangThai varchar(50),
+  trangThai varchar(100),
   hinhAnh varchar(255),
   chiTiet varchar(255),
   thongSo varchar(255),
@@ -92,7 +92,7 @@ CREATE Table tbl_hoadon (
   trangThai varchar(50),
   ngayLapHD datetime,
   diaChi varchar(255),
-  sdt varchar(12),
+  sdt varchar(20),
   ghiChu varchar(255),
   created_at date ,
   updated_at date ,
@@ -131,10 +131,10 @@ CREATE Table nhacungcap (
 );
 CREATE Table danhmuc (
   id integer PRIMARY KEY AUTO_INCREMENT,
-  tenDanhMuc varchar(50),
+  tenDanhMuc varchar(100),
   hinhAnh varchar(255),
   moTa varchar(255),
-  trangThai varchar(50),
+  trangThai varchar(100),
   created_at date ,
   updated_at date ,
   deleted_at date 
