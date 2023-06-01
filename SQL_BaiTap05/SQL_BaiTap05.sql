@@ -4,7 +4,7 @@ CREATE TABLE tbl_nguoidung (
   id int PRIMARY KEY AUTO_INCREMENT,
   ten varchar(100),
   sdt varchar(20),
-  diachi varchar(255),
+  diaChi varchar(255),
   username varchar(100),
   password varchar(50),
   email varchar(100),
