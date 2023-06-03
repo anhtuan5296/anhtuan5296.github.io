@@ -9,4 +9,4 @@
 
 [1221. Split a String in Balanced Strings](https://leetcode.com/problems/split-a-string-in-balanced-strings/submissions/962462698/)
 
-[1662. Check If Two String Arrays are Equivalent](https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/submissions/)  
+[1662. Check If Two String Arrays are Equivalent](https://leetcode.com/problems/check-if-two-string-arrays-are-equivalent/submissions/962455490/)  
