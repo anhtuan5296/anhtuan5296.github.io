@@ -45,9 +45,9 @@ function hello(translate) {
   }
   
   // Ví dụ :
-  console.log(translate('VN')); // output : Xin chào 
-  console.log(translate('EN')); // output : Hello
-  console.log(translate('FR')); // output : Bonjuor
+  console.log(hello('VN')); // output : Xin chào 
+  console.log(hello('EN')); // output : Hello
+  console.log(hello('FR')); // output : Bonjuor
 // ------------------------------------------------------------------------------------------------------------------------------------
 
   
