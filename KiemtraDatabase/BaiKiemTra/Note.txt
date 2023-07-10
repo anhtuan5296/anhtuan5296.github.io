@@ -1,0 +1,29 @@
+Bảng Users được tạo ra để quản lý học viên và giáo viên, và những user sau khi đăng ký sẽ
+được đặt role mặc định là sinh viên, sau đó sẽ liên hệ admin để admin có thể điểu chỉnh về
+đúng role của mình.
+
+
+Bảng Courses là bảng quản lý các khóa học, trong đó có 1 khóa ngoại tham chiếu đến bảng 
+Users để lấy được giảng viên quản lý khóa học này.
+
+
+Bảng Classes là bảng quản lý các lớp học. Trong đó 2 khóa ngoại để tham chiếu đến bảng Users
+và Courses để lấy được giảng viên quản lý lớp và khóa học của lớp đó.
+
+
+Bảng StudentClasses quản lý việc thêm sinh viên vào lớp học. Có 2 khóa ngoại tham chiếu đến
+bảng Users và bảng Classes để lấy ra thông tin về sinh viên và lớp học sinh viên được thêm 
+vào.
+
+
+Bảng Lectures quản lý về bài giảng. Có 2 khóa ngoại tham chiếu đến bảng Classes để lấy thông
+tin về lớp học và tham chiếu đến bảng lectureDetails để lấy thông tin chi tiết về bài giảng,
+từ đó có thể làm nhiều bài giảng cho 1 lớp học.
+
+
+Bảng LectureDetails quản lý về thông tin chi tiết của bài giảng.
+
+
+Bảng Point quản lý về việc chấm điểm của sinh viên. Có 3 khóa ngoại tham chiếu các bảng Users 
+và Classes để lấy được thông tin về sinh viên, lớp và giảng viên.
+

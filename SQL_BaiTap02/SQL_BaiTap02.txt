@@ -1,0 +1,70 @@
+CREATE DATABASE quanlysinhdiem;
+USE quanlysinhdiem;
+
+
+CREATE TABLE tbl_sinhvien (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  ten varchar(50) NOT NULL,
+  tuoi int NOT NULL,
+  gioiTinh int NOT NULL,
+  maLop int NOT NULL
+);
+
+INSERT INTO tbl_sinhvien (ten, tuoi, gioiTinh, maLop)
+VALUES
+('Nguyen Van A', 20, 1, 12),
+('Tran Thi B', 22, 0, 16),
+('Pham Van C', 21, 1, 19),
+('Hoang Thi D', 23, 0, 20),
+('Le Van E', 19, 1, 10),
+('Do Thi F', 20, 0, 20),
+('Vo Van G', 22, 1, 15),
+('Ngo Thi H', 21, 0, 15),
+('Dang Van I', 20, 1, 19),
+('Ly Thi K', 23, 0, 17);
+
+
+
+CREATE TABLE tbl_giaovien (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  ten varchar(50) NOT NULL,
+  tuoi int NOT NULL,
+  gioiTinh int NOT NULL,
+  soNamKN int NOT NULL
+);
+
+INSERT INTO tbl_giaovien (ten, tuoi, gioiTinh, soNamKN)
+VALUES
+('Tran Van X', 30, 1, 5),
+('Nguyen Thi Y', 35, 0, 8),
+('Pham Van Z', 40, 1, 10),
+('Le Thi W', 32, 0, 6),
+('Hoang Van U', 38, 1, 9),
+('Do Thi T', 31, 0, 7),
+('Vo Van S', 36, 1, 8),
+('Ngo Thi R', 33, 0, 6),
+('Dang Van Q', 37, 1, 9),
+('Ly Thi P', 34, 0, 7);
+
+
+
+CREATE TABLE tbl_diem (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  maSV varchar(10) NOT NULL,
+  diemToan float DEFAULT NULL,
+  diemLy float DEFAULT NULL,
+  diemHoa float DEFAULT NULL
+);
+
+INSERT INTO tbl_diem (maSV, diemToan, diemLy, diemHoa)
+VALUES
+('1286169822', 8.5, 7.5, 9.0),
+('9876543210', 7.0, 8.0, 7.5),
+('2468135790', 9.0, 8.5, 9.5),
+('1357924680', 6.5, 7.0, 8.0),
+('8642097531', 8.0, 7.5, 8.5),
+('5790246813', 7.5, 8.0, 7.0),
+('0123456789', 9.5, 9.0, 9.0),
+('9876543210', 8.0, 8.5, 7.5),
+('4567890123', 7.0, 7.5, 8.0),
+('7890123456', 9.0, 8.0, 9.5);
