@@ -5,7 +5,7 @@
 
 [Remove Linked List Elements](https://leetcode.com/problems/remove-linked-list-elements/submissions/994757716/)  
 
-[Merge Two Sorted Lists](hhttps://leetcode.com/problems/merge-two-sorted-lists/submissions/994759812/)
+[Merge Two Sorted Lists](https://leetcode.com/problems/merge-two-sorted-lists/submissions/994759812/)
 
 [Delete Node in a Linked List](https://leetcode.com/problems/delete-node-in-a-linked-list/submissions/994768842/)
 
