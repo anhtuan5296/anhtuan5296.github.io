@@ -1,71 +1,70 @@
-// Mảng màu
-let colors = [
-  '#3498db',
-  '#9b59b6',
-  '#e74c3c',
-  '#2c3e50',
-  '#d35400',
-];
+const todoList = document.getElementById('list');
+const addTodoBtn = document.getElementById('add-todo-btn');
+const newTodoTitle = document.getElementById('new-todo-title');
 
-// Số lượng box ban đầu
-let totalBox = 5;
-let addedBoxCount = 0; // Số lượng box đã được thêm vào
+let todos = [];
 
-// Lấy các phần tử DOM cần sử dụng
-const boxesContainer = document.querySelector('.boxes');
-const scoreElement = document.querySelector('.points');
-const moreBoxButton = document.getElementById('btn');
+function renderTodos() {
+  todoList.innerHTML = '';
+  if (todos.length === 0) {
+    const emptyMessage = document.createElement('p');
+    emptyMessage.textContent = 'Danh sách công việc trống';
+    todoList.appendChild(emptyMessage);
+  } else {
+    todos.forEach((todo, index) => {
+      const todoItem = document.createElement('li');
+      const todoCheckbox = document.createElement('input');
+      todoCheckbox.type = 'checkbox';
+      todoCheckbox.checked = todo.completed;
+      todoCheckbox.addEventListener('change', () => {
+        todos[index].completed = todoCheckbox.checked;
+        renderTodos();
+      });
+      todoItem.appendChild(todoCheckbox);
+      const todoTitle = document.createElement('span');
+      todoTitle.textContent = todo.title;
+      if (todo.completed) {
+        todoTitle.classList.add('completed');
+      }
+      todoItem.appendChild(todoTitle);
+      const editBtn = document.createElement('button');
+      editBtn.textContent = 'Edit';
+      editBtn.addEventListener('click', () => {
+        const newTitle = prompt('Nhập tiêu đề mới:', todo.title);
+        if (newTitle !== null && newTitle.trim() !== '') {
+          todos[index].title = newTitle.trim();
+          renderTodos();
+        }
+      });
+      todoItem.appendChild(editBtn);
+      const deleteBtn = document.createElement('button');
+      deleteBtn.textContent = 'Delete';
+      deleteBtn.addEventListener('click', () => {
+        const confirmed = confirm('Bạn có chắc chắn muốn xóa công việc này?');
+        if (confirmed) {
+          todos.splice(index, 1);
+          renderTodos();
+        }
+      });
+      todoItem.appendChild(deleteBtn);
+      todoList.appendChild(todoItem);
+    });
+  }
+}
 
-// Render box ban đầu
-renderBoxes(totalBox);
-
-// Đăng ký click cho các box
-boxesContainer.addEventListener('click', function (event) {
-  const clickedBox = event.target;
-  if (clickedBox.classList.contains('box')) {
-    removeBox(clickedBox);
+addTodoBtn.addEventListener('click', () => {
+  const title = newTodoTitle.value.trim();
+  if (title === '') {
+    alert('Tên công việc không được để trống');
+  } else {
+    todos.push({ title, completed: false });
+    newTodoTitle.value = '';
+    renderTodos();
   }
 });
 
-// Đăng ký  click cho nút "more box"
-moreBoxButton.addEventListener('click', function () {
-  addMoreBoxes(5);
-});
+todos.push({ title: 'Đi chơi', completed: false });
+todos.push({ title: 'Học bài', completed: false });
+todos.push({ title: 'Đá bóng', completed: false });
 
-// Hàm render các box ban đầu
-function renderBoxes(count) {
-  for (let i = 0; i < count; i++) {
-    addBox();
-  }
-  updateTotalBox();
-}
-
-// Hàm thêm box mới
-function addBox() {
-  const box = document.createElement('div');
-  box.classList.add('box');
-  box.style.backgroundColor = colors[addedBoxCount % colors.length];
-  boxesContainer.appendChild(box);
-  addedBoxCount++;
-  updateTotalBox();
-}
-
-// Hàm xóa box
-function removeBox(box) {
-  box.remove();
-  updateTotalBox();
-}
-
-// Hàm cập nhật số lượng total box
-function updateTotalBox() {
-  const boxElements = document.querySelectorAll('.box');
-  totalBox = boxElements.length;
-  scoreElement.textContent = totalBox;
-}
-
-// Hàm thêm nhiều box
-function addMoreBoxes(count) {
-  for (let i = 0; i < count; i++) {
-    addBox();
-  }
-}
+renderTodos();
