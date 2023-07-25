@@ -1,84 +1,92 @@
+img {
+    max-width: 500px;
+  }
+  .scrollable-list {
+    max-height: 200px;
+    overflow: auto;
+  }
+   
+  /* Reset some default styles for better consistency */
+body, h2, p {
+  margin: 0;
+  padding: 0;
+}
+
+/* Main container styling */
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  .container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  h1 {
-    text-align: center;
-  }
-  
-  #todo-list {
-    margin: auto;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 5px;
-    padding: 10px;
-  }
-  
-  #add-todo {
-    margin: 20px auto;
-    width: 80%;
-    max-width: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  #add-todo input[type="text"] {
-    flex-grow: 1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  #add-todo button {
-    margin-left: 10px;
-    padding: 10px;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .completed {
-    text-decoration: line-through;
-    color: #ccc;
-  }
-  
-  li {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 5px 0;
-  }
-  
-  li span {
-    flex-grow: 1;
-    padding: 0 10px;
-  }
-  
-  li button {
-    padding: 5px 10px; 
-    background-color: #dc3545;
-    color: #fff;
-    border: 1px solid #dc3545;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  li button:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
-  }
-  
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-top: 20px;
+}
+
+/* Main Breed List styling */
+#main-breed-list {
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
+  background-color: #fff;
+}
+
+#get-sub-breeds-btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* Sub Breeds List styling */
+#sub-breeds-list-container {
+  max-height: 200px;
+  overflow: auto;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.sub-breeds-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sub-breeds-list li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.sub-breeds-list li:last-child {
+  border-bottom: none;
+}
+
+.sub-breeds-list li:hover {
+  background-color: #f2f2f2;
+}
+
+/* Random Sub Breed Image styling */
+#random-image-container {
+  max-width: 500px;
+  margin-bottom: 20px;
+}
+
+#random-image-container img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}

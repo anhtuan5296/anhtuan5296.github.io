@@ -1,70 +1,58 @@
-const todoList = document.getElementById('list');
-const addTodoBtn = document.getElementById('add-todo-btn');
-const newTodoTitle = document.getElementById('new-todo-title');
+// Lấy danh sách giống loài chính và hiển thị
+fetch('https://dog.ceo/api/breeds/list/all')
+  .then(response => response.json())
+  .then(data => {
+    const mainBreedList = document.getElementById('main-breed-list');
+    const breeds = Object.keys(data.message);
+    for (let i = 0; i < breeds.length; i++) {
+      const breed = breeds[i];
+      const breedOption = document.createElement('option');
+      breedOption.textContent = breed;
+      mainBreedList.appendChild(breedOption);
+    }
+  });
 
-let todos = [];
-
-function renderTodos() {
-  todoList.innerHTML = '';
-  if (todos.length === 0) {
-    const emptyMessage = document.createElement('p');
-    emptyMessage.textContent = 'Danh sách công việc trống';
-    todoList.appendChild(emptyMessage);
-  } else {
-    todos.forEach((todo, index) => {
-      const todoItem = document.createElement('li');
-      const todoCheckbox = document.createElement('input');
-      todoCheckbox.type = 'checkbox';
-      todoCheckbox.checked = todo.completed;
-      todoCheckbox.addEventListener('change', () => {
-        todos[index].completed = todoCheckbox.checked;
-        renderTodos();
-      });
-      todoItem.appendChild(todoCheckbox);
-      const todoTitle = document.createElement('span');
-      todoTitle.textContent = todo.title;
-      if (todo.completed) {
-        todoTitle.classList.add('completed');
+// Hiển thị danh sách giống loài phụ khi người dùng chọn một giống loài chính
+const subBreedsListContainer = document.getElementById('sub-breeds-list-container');
+const mainBreedList = document.getElementById('main-breed-list');
+const getSubBreedsBtn = document.getElementById('get-sub-breeds-btn');
+getSubBreedsBtn.addEventListener('click', () => {
+  const selectedMainBreed = mainBreedList.value;
+  fetch(`https://dog.ceo/api/breed/${selectedMainBreed}/list`)
+    .then(response => response.json())
+    .then(data => {
+      subBreedsListContainer.innerHTML = '';
+      const subBreeds = data.message;
+      if (subBreeds.length === 0) {
+        const noSubBreedOption = document.createElement('p');
+        noSubBreedOption.textContent = 'No sub-breed';
+        subBreedsListContainer.appendChild(noSubBreedOption);
+      } else {
+        const subBreedsList = document.createElement('ul');
+        subBreedsList.classList.add('sub-breeds-list');
+        for (let i = 0; i < subBreeds.length; i++) {
+          const subBreed = subBreeds[i];
+          const subBreedItem = document.createElement('li');
+          subBreedItem.textContent = subBreed;
+          subBreedItem.addEventListener('click', () => {
+            getSubBreedImage(selectedMainBreed, subBreed);
+          });
+          subBreedsList.appendChild(subBreedItem);
+        }
+        subBreedsListContainer.appendChild(subBreedsList);
       }
-      todoItem.appendChild(todoTitle);
-      const editBtn = document.createElement('button');
-      editBtn.textContent = 'Edit';
-      editBtn.addEventListener('click', () => {
-        const newTitle = prompt('Nhập tiêu đề mới:', todo.title);
-        if (newTitle !== null && newTitle.trim() !== '') {
-          todos[index].title = newTitle.trim();
-          renderTodos();
-        }
-      });
-      todoItem.appendChild(editBtn);
-      const deleteBtn = document.createElement('button');
-      deleteBtn.textContent = 'Delete';
-      deleteBtn.addEventListener('click', () => {
-        const confirmed = confirm('Bạn có chắc chắn muốn xóa công việc này?');
-        if (confirmed) {
-          todos.splice(index, 1);
-          renderTodos();
-        }
-      });
-      todoItem.appendChild(deleteBtn);
-      todoList.appendChild(todoItem);
     });
-  }
-}
-
-addTodoBtn.addEventListener('click', () => {
-  const title = newTodoTitle.value.trim();
-  if (title === '') {
-    alert('Tên công việc không được để trống');
-  } else {
-    todos.push({ title, completed: false });
-    newTodoTitle.value = '';
-    renderTodos();
-  }
 });
 
-todos.push({ title: 'Đi chơi', completed: false });
-todos.push({ title: 'Học bài', completed: false });
-todos.push({ title: 'Đá bóng', completed: false });
-
-renderTodos();
+// Hiển thị ảnh random của giống loài phụ
+const randomImageContainer = document.getElementById('random-image-container');
+const getSubBreedImage = (mainBreed, subBreed) => {
+  fetch(`https://dog.ceo/api/breed/${mainBreed}/${subBreed}/images/random`)
+    .then(response => response.json())
+    .then(data => {
+      randomImageContainer.innerHTML = '';
+      const dogImage = document.createElement('img');
+      dogImage.src = data.message;
+      randomImageContainer.appendChild(dogImage);
+    });
+};
