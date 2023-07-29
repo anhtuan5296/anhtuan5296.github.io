@@ -1,4 +1,4 @@
-1. Viết function truyền vào mảng các chuỗi có độ dài bất kỳ. Kết quả trả về là một mảng các chuỗi có độ dài lớn nhất:
+// 1. Viết function truyền vào mảng các chuỗi có độ dài bất kỳ. Kết quả trả về là một mảng các chuỗi có độ dài lớn nhất:
 
 
 function getStringHasMaxLength(arr) {
@@ -22,7 +22,7 @@ console.log(getStringHasMaxLength(['aba', 'aa', 'ad', 'c', 'vcd'])); // Output: 
 
 
 
-2. Viết function truyền vào mảng các object user. Trả về mảng các user có age > 25 và isStatus = true:
+// 2. Viết function truyền vào mảng các object user. Trả về mảng các user có age > 25 và isStatus = true:
 
 
 function filterUsersByAgeAndStatus(users) {
@@ -52,7 +52,7 @@ console.log(filterUsersByAgeAndStatus(users)); // Output: [{ name: 'Bùi Công S
 
 
 
-3. Viết function truyền vào mảng các chuỗi. Trả về Object hiển thị xem mỗi phần tử trong mảng xuất hiện bao nhiêu lần:
+// 3. Viết function truyền vào mảng các chuỗi. Trả về Object hiển thị xem mỗi phần tử trong mảng xuất hiện bao nhiêu lần:
 
 
 function getCountElement(arr) {
