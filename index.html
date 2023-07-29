@@ -2,52 +2,112 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Bai2_3</title>
     <style>
-.scrollable-list select {
-  width: 200px;
-  height: auto;
-  max-height: 200px;
-}
-
-.sub-breeds-list {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
-}
-
-.sub-breeds-list li {
-  cursor: pointer;
-  padding: 5px;
-}
-
-.sub-breeds-list li:hover {
-  background-color: #ddd;
-}
-img {
-  max-width: 500px;
-}
+        /* Bai 2 */
+          .quiz-container {
+            margin-bottom: 20px;
+        }
+        .quiz-item {
+            margin-bottom: 10px;
+        }
+        /* Bai 3 */
+        .nav-container {
+            display: flex;
+            margin-bottom: 20px;
+        }
+        .nav-item.active {
+            font-weight: bold;
+            background-color:red;
+            color:white;
+        }
+        .post-container {
+            margin-bottom: 20px;
+        }
+        .post-item {
+            margin-bottom: 10px;
+        }
     </style>
 </head>
 <body>
-    <h2>Main Breed List</h2>
-    <div class="scrollable-list">
-      <select id="main-breed-list">
-        <option value="">-- Select a main breed --</option>
-      </select>
-      <button id="get-sub-breeds-btn">Get sub breeds</button>
+    <h1> Bai 2</h1>
+    <button id="btn">Random Answer</button>
+    <div class="quiz-container">
+        <div class="quiz-item">
+            <h3>Câu 1: 1 + 1 = ?</h3>
+            <div class="quiz-answer">
+                <div class="quiz-answer-item">
+                    <input type="radio" name="1">
+                    <label>1</label>
+                </div>
+                <div class="quiz-answer-item">
+                    <input type="radio" name="1">
+                    <label>2</label>
+                </div>
+                <div class="quiz-answer-item">
+                    <input type="radio" name="1">
+                    <label>3</label>
+                </div>
+                <div class="quiz-answer-item">
+                    <input type="radio" name="1">
+                    <label>4</label>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-item">
+            <h3>Câu 2: 2 + 2 = ?</h3>
+            <div class="quiz-answer">
+                <div class="quiz-answer-item">
+                    <input type="radio" name="2">
+                    <label>2</label>
+                </div>
+                <div class="quiz-answer-item">
+                    <input type="radio" name="2">
+                    <label>3</label>
+                </div>
+                <div class="quiz-answer-item">
+                    <input type="radio" name="2">
+                    <label>4</label>
+                </div>
+                <div class="quiz-answer-item">
+                    <input type="radio" name="2">
+                    <label>5</label>
+                </div>
+            </div>
+        </div>
+        <div class="quiz-item">
+            <h3>Câu 3: 3 + 3 = ?</h3>
+            <div class="quiz-answer">
+                <div class="quiz-answer-item">
+                    <input type="radio" name="3">
+                    <label>3</label>
+                </div>
+                <div class="quiz-answer-item">
+                    <input type="radio" name="3">
+                    <label>4</label>
+                </div>
+                <div class="quiz-answer-item">
+                    <input type="radio" name="3">
+                    <label>5</label>
+                </div>
+                <div class="quiz-answer-item">
+                    <input type="radio" name="3">
+                    <label>6</label>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    <h2>Sub Breeds List</h2>
-    <div id="sub-breeds-list-container" class="scrollable-list">
+    </br>
+    <h1> Bai 3</h1>
+    <div class="nav-container">
+        <button class="nav-item active" data-resource="posts">posts</button>
+        <button class="nav-item" data-resource="photos">photos</button>
+        <button class="nav-item" data-resource="albums">albums</button>
     </div>
-    <button id="get-sub-breed-images-btn">Get sub breed image</button>
-    
-    <h2>Random Sub Breed Image</h2>
-    <div id="random-image-container">
-    </div>
-<script src="./main.js"></script>
-<link rel="stylesheet" href="style.css">
+
+    <div class="post-container" id="post-container"></div>
+    <script src="./Bai2_3.js"></script>
 </body>
 </html>
