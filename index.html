@@ -1,113 +1,74 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bai2_3</title>
-    <style>
-        /* Bai 2 */
-          .quiz-container {
-            margin-bottom: 20px;
-        }
-        .quiz-item {
-            margin-bottom: 10px;
-        }
-        /* Bai 3 */
-        .nav-container {
-            display: flex;
-            margin-bottom: 20px;
-        }
-        .nav-item.active {
-            font-weight: bold;
-            background-color:red;
-            color:white;
-        }
-        .post-container {
-            margin-bottom: 20px;
-        }
-        .post-item {
-            margin-bottom: 10px;
-        }
-    </style>
-</head>
-<body>
-    <h1> Bai 2</h1>
-    <button id="btn">Random Answer</button>
-    <div class="quiz-container">
-        <div class="quiz-item">
-            <h3>Câu 1: 1 + 1 = ?</h3>
-            <div class="quiz-answer">
-                <div class="quiz-answer-item">
-                    <input type="radio" name="1">
-                    <label>1</label>
-                </div>
-                <div class="quiz-answer-item">
-                    <input type="radio" name="1">
-                    <label>2</label>
-                </div>
-                <div class="quiz-answer-item">
-                    <input type="radio" name="1">
-                    <label>3</label>
-                </div>
-                <div class="quiz-answer-item">
-                    <input type="radio" name="1">
-                    <label>4</label>
-                </div>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <h3>Câu 2: 2 + 2 = ?</h3>
-            <div class="quiz-answer">
-                <div class="quiz-answer-item">
-                    <input type="radio" name="2">
-                    <label>2</label>
-                </div>
-                <div class="quiz-answer-item">
-                    <input type="radio" name="2">
-                    <label>3</label>
-                </div>
-                <div class="quiz-answer-item">
-                    <input type="radio" name="2">
-                    <label>4</label>
-                </div>
-                <div class="quiz-answer-item">
-                    <input type="radio" name="2">
-                    <label>5</label>
-                </div>
-            </div>
-        </div>
-        <div class="quiz-item">
-            <h3>Câu 3: 3 + 3 = ?</h3>
-            <div class="quiz-answer">
-                <div class="quiz-answer-item">
-                    <input type="radio" name="3">
-                    <label>3</label>
-                </div>
-                <div class="quiz-answer-item">
-                    <input type="radio" name="3">
-                    <label>4</label>
-                </div>
-                <div class="quiz-answer-item">
-                    <input type="radio" name="3">
-                    <label>5</label>
-                </div>
-                <div class="quiz-answer-item">
-                    <input type="radio" name="3">
-                    <label>6</label>
-                </div>
-            </div>
-        </div>
-    </div>
-    </br>
-    <h1> Bai 3</h1>
-    <div class="nav-container">
-        <button class="nav-item active" data-resource="posts">posts</button>
-        <button class="nav-item" data-resource="photos">photos</button>
-        <button class="nav-item" data-resource="albums">albums</button>
-    </div>
+    <title>Let's connect our studio HTML Template Live Demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/png" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOEAAADhCAMAAAAJbSJIAAAAFVBMVEU/gvT///8ve/SCqfe/0/tdk/Xk7f2TaUzOAAAEt0lEQVR4nO2d65arMAhG01x8/0c+jW1PL1MVKfkILPaav3WxS8B0RE2XN5ZaWkvT0Vqpy4VHetUrLWdtmS1yboUl+TRcSppW707mOP43rLPrdXIubMNiQfBKbmfTeDdsRgSv5JOKN8MJ2+c2uZ43tLJE75zLYjc00WReOaXYDa0JXjmheDUs2uFyoCumy6IdLAv6SSPZq8KV3OiGps4UT8iKaTGZwtQ3qURDm4u0Q1RMJjvpDZpiMrafeYO0f0tGG80NiqJ2jD9CUNQO8VeOt6jaEf7MoaJ2gAIcKGqHJ8G+onZ0Ivg33N2iagcnwu4uXDs4Gfb2b9qxCbGjqB2aFNuK2pGJsbl/0w5Mji1F7bgE2VDUDkuS74raUcnybf+mHZMwXxS1QxLmy28p7ZCk+fu/cO2IpPm7RdWOSJw/itoByfOpqB3PAD62qNrhjOBdUTuaIbxtbrSDGcOronYsg3hR5B9DiEHDdE9F7gFSqSKUUlr/tkT11giXnwwZA3R79KnWJG35UOR9mjwmcEZTfLp14RueHZ6jS4pWZeMbjkjhnSo4JXnbv7E+KluFHyxy193Xhsr64FDDq6NcHpmGY3PYqUL12HMxp6HcyOsy5SpdqSKC10pkfQ5hKFSNbWJDmZWaWcOlkFUqpJh5qx1lKDD7mnlzezBDAUXWVBtslUoo8ub2gIZK94IgDVUUkav0onNPFtZQYxIda6hwvwR4lWrcWoc2xK9TtCH81iz4KsXfmwU3hCcRbwi+RxK/SuFJVDAEt1MFQ+w58XiV9ktK+9SzT/LAbmwODct6WXDvr19Qa2cssScMiiGFfOYZEMhlerxK6b/p6I8rgS7TY0P6sXIiPgQC2k0Fc5joz7kYpvMlJMkcko53/mv7EdkcUrOILEThHBIvmwMNJXvpA4IhstWI55C2TqcyPB8MwXCAyQbSvXQ9JiGJwF3NiBwSkgg8XQzIIaWd4n4Fj+illNM+8Hf+iBwSBq2mMmRUTD42hNXhiF5KKUTzOTw8X0xlyDjokP7FZFAsQ743JmNiOWymUxlycnhsONMq5Rw1cjiXIeeoExkO6qUTGfrPof86HNNLZzL0n0P/dRi91H4O/ddh9FL7OfRfh9FL7efQfx1GL7WfQ/91GL3Ufg7912H0Uvs59F+Har3U9izGVDn0X4fRS+3n0H8dxr7Ufg7912H0Uvs59F+H0Uvt59B/HUYvtZ9D/3UYvdR+Dv3XYfRS+zn0X4fRS+3n0H8dRi+N6xYbTJTDuPY0LIczGUYv/UbkcK6zBeeoE+Uweqn986H/PU3sS+3nMHppnA83mCiH/vc0x3fO857oNOaoLI4etMJ7strRw02gj4Y8SCLzyx5zVB773ZTbEfaf1wp+z8XOOyx/esPfmKMy2Xyx6IRHDYIgCIIgCIIgCIIgCIIgCILABPj3JaPxbtgS+k27aFrCv7gcSi7uDWsCvy0ZTV4S+vo4mksCv2gXTC5Xw0tzrJiXbug5ie3SDbGjOFD68FZCj1MhWQeb1nE5p+v0NmF4Gwh0qXgfoUwKc38YHjOij6HOxds54/9w4XNstTpyzC+vbH8dzK3Fw4hcd3h9Jf3H6HGtxfbZsbVS36dU/wGFEjny0l22NQAAAABJRU5ErkJggg=="/>
+    
 
-    <div class="post-container" id="post-container"></div>
-    <script src="./Bai2_3.js"></script>
+
+</head>
+
+<body style="background-color: #f2f2f2;">
+    <div class="page-preview text-center ">
+        <div class="page-preview-header m-2" style="background-color: #f2f2f2;">
+            <a class="hidden-sm hidden-xs active m-1 bg-gradient" style="background-color: rgb(123, 209, 243); " href="#"><img
+                    alt="Responsive Desktop Mode" src="//csite.nicepage.com/Images/Site/responsive-desktop.png"></a>
+            <a class="hidden-sm hidden-xs m-1" href="#" id="previewLaptopBtn" data-preview-size="1040px"><img
+                    alt="Responsive Laptop Mode" src="//csite.nicepage.com/Images/Site/responsive-laptop.png"></a>
+            <a class="hidden-xs m-1" href="#" id="previewTabletBtn" data-preview-size="820px"><img
+                    alt="Responsive Tablet Mode" src="//csite.nicepage.com/Images/Site/responsive-tablet.png"></a>
+            <a class="hidden-xs m-1" href="#" id="previewPhoneHorizontalBtn" data-preview-size="640px"><img
+                    alt="Responsive Phone Horizontal Mode"
+                    src="//csite.nicepage.com/Images/Site/responsive-phone-horizontal.png"></a>
+            <a class="hidden-xs m-1" href="#" id="previewPhoneBtn" data-preview-size="440px"><img
+                    alt="Responsive Phone Mode" src="//csite.nicepage.com/Images/Site/responsive-phone.png"></a>
+        </div>
+        <div class="page-preview-body">
+            <iframe id="livePreviewFrame"
+                src="https://website82348.nicepage.io/Page-10.html?version=ad766dd1-5702-4394-ab43-8c855924869f"
+                width="1057" height="640" style="width: 100%;"></iframe>
+        </div>
+    </div>
+    <a style="position:absolute;top:17px;left:10px;" href="/"><img alt="NicePage.com"
+            src="//csite.nicepage.com/Images/logo-w.png"></a>
+
+    <script>
+        if (window.parent) {
+            var _w = 0, _h = 0;
+            var updateFormSize = function () {
+                var form = $('form.shaped-form-extended,form.shaped-form');
+                var w = form.outerWidth(true);
+                var h = form.outerHeight(true);
+                if (Math.abs(_w - w) > 5 || Math.abs(_h - h) > 5) {
+                    _w = w;
+                    _h = h;
+                    var msg = { key: 'login-frame-size', width: w, height: h };
+                    window.parent.postMessage(msg, "*");
+                }
+                setTimeout(updateFormSize, 300);
+            }
+            updateFormSize();
+        }
+    </script>
+
+    <div id="np-cookie-consent" style="opacity: -0.02; display: none;">
+        <div class="cookieDesc">
+            <p>By using this website, you automatically accept that we use cookies. Learn more about our <a
+                    href="https://nicepage.com/Privacy" target="_blank"> privacy and cookies policy</a>.</p>
+        </div>
+        <div class="cookieButton"><a onclick="PureCookie.dismiss();">Accept</a></div>
+    </div>
+    <div id="shimeji-workArea"
+        style="position: fixed; background: transparent; z-index: 2147483643; width: 100vw; height: 100vh; left: 0px; top: 0px; transform: translate(0px, 0px); pointer-events: none;">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
+
 </html>
