@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BMI Calculator</title>
+</head>
+<body>
+<label>Height (m): <input type="number" id="heightInput"></label>
+<label>Weight (kg): <input type="number" id="weightInput"></label>
+
+<button onclick="calculateBmiGet()">Calculate BMI (GET)</button>
+<button onclick="calculateBmiPost()">Calculate BMI (POST)</button>
+
+<p id="result"></p>
+
+<script>
+    function calculateBmiGet() {
+        const height = parseFloat(document.getElementById('heightInput').value);
+        const weight = parseFloat(document.getElementById('weightInput').value);
+
+        fetch(`/bmi?height=${height}&weight=${weight}`)
+            .then(response => response.text())
+            .then(result => {
+                document.getElementById('result').textContent = result;
+            })
+            .catch(error => {
+                console.error('Error calculating BMI:', error);
+            });
+    }
+
+    function calculateBmiPost() {
+        const height = parseFloat(document.getElementById('heightInput').value);
+        const weight = parseFloat(document.getElementById('weightInput').value);
+
+        const bmiRequest = {
+            height: height,
+            weight: weight
+        };
+
+        fetch('/bmi', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bmiRequest)
+        })
+            .then(response => response.text())
+            .then(result => {
+                document.getElementById('result').textContent = result;
+            })
+            .catch(error => {
+                console.error('Error calculating BMI:', error);
+            });
+    }
+</script>
+</body>
+</html>

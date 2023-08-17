@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>User Authentication Demo</title>
+</head>
+<body>
+<div id="loginForm">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+</div>
+
+<div id="userInfo" style="display: none;">
+    <h2>User Info</h2>
+    <p><strong>Username:</strong> <span id="userInfoUsername"></span></p>
+    <p><strong>Email:</strong> <span id="userInfoEmail"></span></p>
+    <p><strong>Avatar:</strong> <span id="userInfoAvatar"></span></p>
+    <button onclick="logout()">Logout</button>
+</div>
+
+<script>
+    function login() {
+        const username = document.getElementById('username').value;
+        const password = document.getElementById('password').value;
+
+        const data = {
+            username: username,
+            password: password
+        };
+
+        fetch('/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Login failed');
+                }
+                return response.json();
+            })
+            .then(user => {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('userInfo').style.display = 'block';
+                document.getElementById('userInfoUsername').textContent = user.username;
+                document.getElementById('userInfoEmail').textContent = user.email;
+                document.getElementById('userInfoAvatar').textContent = user.avatar;
+            })
+            .catch(error => {
+                console.error('Login error:', error);
+            });
+    }
+
+    function logout() {
+        document.getElementById('loginForm').style.display = 'block';
+        document.getElementById('userInfo').style.display = 'none';
+        document.getElementById('username').value = '';
+        document.getElementById('password').value = '';
+    }
+</script>
+</body>
+</html>
