@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+/* Reset Styles */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+/* Font */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Links */
+a {
+    text-decoration: none;
+    color: #30598c; /* Change link color */
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #003366; /* Change link color on hover */
+}
+
+/* Lists */
+ul {
+    list-style-type: none;
+}
+
+/* Header style */
+.header {
+    height: 60px;
+    background-color: #30598c;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.logo img {
+    width: 120px;
+}
+
+.menu a {
+    color: white;
+    margin-left: 20px;
+    font-size: 18px;
+    transition: color 0.3s;
+}
+
+.menu a:hover {
+    color: #c2e0ff; /* Change link color on hover */
+}
+
+/* Course List Page */
+.course-item {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s;
+}
+
+.course-item:hover {
+    transform: translateY(-5px);
+}
+
+.course-item-image {
+    height: 200px;
+}
+
+.course-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.course-item-info {
+    padding: 15px;
+}
+
+.course-item-info h2 {
+    font-size: 1.25rem;
+    margin-bottom: 10px;
+    color: #333; /* Change course title color */
+}
+
+.type {
+    font-size: 14px;
+    color: #666;
+}
+
+/* Course Detail Page */
+.supporter-image img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.course-description p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #444; /* Change description text color */
+}
