@@ -30,7 +30,7 @@ public class UserController {
         UsersResponse response = new UsersResponse();
         response.setData(userDtoList);
         response.setCurrentPage(page);
-        response.setSize(limit);
+        response.setSize((userDtoList.size()<=limit?userDtoList.size():limit));
         response.setTotalPage(userService.getTotalPages(limit));
 
         return ResponseEntity.ok(response);
