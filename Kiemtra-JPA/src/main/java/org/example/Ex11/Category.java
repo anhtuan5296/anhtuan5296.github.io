@@ -1,4 +1,3 @@
-package com.example.test28_09jpa.Test11;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -13,17 +12,13 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="tag")
-public class Tag {
+@Table(name="category")
+public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    @ManyToMany
-    @JoinTable(
-            name = "product_tag",
-            joinColumns = @JoinColumn(name = "tag_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id")
-    )
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Product> products;
 }
