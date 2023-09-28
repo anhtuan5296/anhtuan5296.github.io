@@ -274,11 +274,9 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 }
 ```
 
-Bây giờ, ta muốn thực hiện một truy vấn phân trang cho tất cả các nhân viên, sắp xếp theo trường `lastName` tăng dần và giới hạn kết quả trả về từ trang thứ 2 (pageIndex = 1) với kích thước trang là 10 (pageSize = 10).
+Bây giờ, ta muốn thực hiện một truy vấn phân trang cho tất cả các nhân viên, sắp xếp theo trường `lastName` tăng dần. 
 
 ```java
-
-
 @Service
 public class EmployeeService {
 
